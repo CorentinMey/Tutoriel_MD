@@ -100,11 +100,11 @@ Lors de ce projet, nous avons utilisé CHARMM-GUI afin de générer des système
      - Température : 310.5 K.
 
 2. Pour mettre en place le système avec la membrane lipidique et le précurseur, une autre méthode de CHARMM-GUI a été employée. En effet, étant donné que le précurseur était trop volumineux pour que CHARMM-GUI arrive à créer un système protéine-membrane de lui même, nous avons dû générer la membrane toute seule avec l’aide de CHARMM-GUI, qui a ensuite été minimisé suivant le README contenu dans le dossier Membrane > Gromacs. Puis nous avons placé manuellement le précurseur dans la membrane toute faite, en prenant soin d’enlever tous les atomes et leur molécules correspondantes présents à moins de 3 Angstrom du précurseur nouvellement placé dans la membrane :
-Mettre sur un pdb la membrane et la prot (appellée precurseur_mini).
-select br. all within 1 of precurseur_mini
-select sele and not precurseur_mini
-Puis action --> remove atoms.
-Regarder le nombre de lipides avec grep wordcount et diviser par le nombre d’atomes du lipide (à trouver dans la topologie) et ajuster dans la topologie.
+- Mettre sur un pdb la membrane et la prot (appellée precurseur_mini).
+- select br. all within 1 of precurseur_mini
+- select sele and not precurseur_mini
+- Puis action --> remove atoms.
+- Regarder le nombre de lipides avec grep wordcount et diviser par le nombre d’atomes du lipide (à trouver dans la topologie) et ajuster dans la topologie.
 
 
 Enfin, nous avons minimisé le système protéine - membrane grâce à GROMACS afin d’obtenir un système relativement stable (avec le même protocole que dans la partie 1 de ce README).
@@ -112,13 +112,12 @@ Enfin, nous avons minimisé le système protéine - membrane grâce à GROMACS a
 ## Génération des fichiers de modélisation avec GROMACS
 
 Pour générer les fichiers de modélisation, il faut avant tout générer les fichiers .tpr qui permettent de lancer la modélisation.
-Protocole pour la préparation et la simulation MD avec GROMACS
+Protocole pour la préparation et la simulation MD avec GROMACS :
+
 1. Copie des fichiers nécessaires
-
 Copier les fichiers nécessaires du répertoire Generate_MD (présent dans ce GitHub) vers le répertoire de travail actuel.
-2. Chargement de GROMACS
 
-Charger GROMACS dans l'environnement en exécutant la commande suivante :
+2. Charger GROMACS dans l'environnement en exécutant la commande suivante :
 
 source /usr/local/gromacs/bin/GMXRC
 
@@ -255,7 +254,7 @@ gmx dssp -f NS4A.xtc -s NS4A.tpr -o resdssp -tu ns -hmode dssp
 Ces données permettent d'analyser l'énergie cinétique, potentielle, totale, ainsi que la température et la pression au cours de la modélisation.
 Commandes :
 
-    Température :
+Température :
 
 gmx energy -f NS4A.edr -o temp_NS4A.xvg
 
@@ -265,7 +264,7 @@ gmx energy -f NS4A.edr -o pression_NS4A.xvg
 
 Énergie cinétique, potentielle et totale :
 
-    gmx energy -f NS4A.edr -o energy_NS4A.xvg
+gmx energy -f NS4A.edr -o energy_NS4A.xvg
 
 Visualisation des fichiers générés
 
